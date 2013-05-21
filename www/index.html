@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
+        
+        <!-- retchet -->
+        <link rel="stylesheet" href="libs/ratchet/ratchet.css">
+        <!-- // <script src="libs/ratchet/ratchet.js"></script> -->
+
+        <link rel="stylesheet" href="css/style.css">
+        <!-- // <script src="js/cordova-2.7.0.js"></script> -->
+        <!-- <script src="js/vendor/zepto.min.js"></script>
+        // <script src="js/vendor/underscore-min.js"></script>
+        // <script src="js/vender/backbone-min.js"></script> -->
+        <!-- // <script src="js/test.js"></script> -->
+        
+        <script data-main="js/app/main" src="js/vendor/requirejs/require.js"></script>
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div id="content" class="content">
+            <div id="home">
+                <header class="bar-title hide">
+                    <a id="swipeleft" class="button" href="#left">
+                        Left
+                    </a>
+                    <h1 class="title">Title</h1>
+                    <a id="swiperight" class="button" href="#">
+                        Right
+                    </a>
+                </header>
+                <nav class="bar-standard hide">
+                    <ul class="segmented-controller">
+                        <li class="active">
+                            <a href="#">Following</a>
+                        </li>
+                        <li>
+                            <a href="#">Connecting</a>
+                        </li>
+                        <li>
+                            <a href="#">Requesting</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="content">
+                    <div id="profile_panel" class="hide">
+
+                    </div>
+                    <div id="search_panel" class="hide">
+                        <a class="button-block">Search Name</a>
+                        <a class="button-block">Search location</a>
+                    </div>
+                </div>
+                <nav class="bar-tab hide">
+                    <ul class="tab-inner">
+                        <li class="tab-item active profile-tab">
+                            <a href="#">
+                                <div class="tab-label">Avatar</div>
+                            </a>
+                        </li>
+                        <li class="tab-item profile-tab">
+                            <a href="#">
+                                <div class="tab-label">Info</div>
+                            </a>
+                        </li>
+                        <li class="tab-item profile-tab">
+                            <a href="#">
+                                <div class="tab-label">Ques</div>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="leftmenu">
+                <ul class="list">
+                    <li>
+                        <a id="home_tab" href="#">
+                            Home
+                            <span class="chevron"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="profile" href="#">
+                            Profile
+                            <span class="chevron"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="dentist" href="#">
+                            My Dentists
+                            <span class="chevron"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="search" href="#">
+                            Find Dentists
+                            <span class="chevron"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Settings
+                            <span class="chevron"></span>
+                        </a>
+                    </li>
+                    <li class="list-divider">Notifications</li>
+
+                </ul>
+            </div>
+            <div id="rightmenu">
+                <ul class="list">
+                    <li>Dentist</li>
+                    <li>Dentist</li>
+                </ul>
+            </div>
+            
+        </div>
+        <div id="tmpl_wrap">
+            <script id="sign_up_tmpl" type="text/tmpl">
+                <form action="" id="signup_form">            
+                    <legend>Sign up</legend>
+                    <div>
+                        <input type="text" name="email" placeholder="Email">
+                    </div>
+                    <div>
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                    <a id="signup_btn" class="button-main button-block">Sign up</a>
+                </form>
+            </script>
+            <script id="sign_in_tmpl" type="text/tmpl">
+                <form action="" id="signin_form">
+                    <legend>Sign in</legend>
+                    <div>
+                        <input type="text" name="email" placeholder="Email">
+                    </div>
+                    <div>
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                    <a id="signin_btn" class="button-main button-block">Sign in</a> 
+                </form>
+            </script>
+        </div> 
+        <!-- <div>
+            <header class="navbar">
+                <div class="navbar-inner">
+                    <a class="brand" href="#">Title</a>
+                    <ul class="nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <div class="container">
+                <form action="" class="form">
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="text" placeholder="Email" class="span12">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="password" class="span12" placeholder="Password">
+                        </div>
+                    </div>
+                    <a href="#" class="pull-right">Sign up</a>
+                    <button class="btn btn-primary pull-right">Sign</button>
+                </form>
+            </div>
+        </div> -->
+    </body>
+</html>
