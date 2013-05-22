@@ -21,7 +21,6 @@ function($, _, Backbone, User) {
 				password: this.$el.find('input[name="password"]').val()
 			});
 			this.user.sync('signin');
-			this.user.localStorage();
 		}
 	});
 	return Signin;

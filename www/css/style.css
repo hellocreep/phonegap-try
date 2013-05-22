@@ -10,12 +10,18 @@
 	height: 100%;
 	z-index: 20;
 	visibility: hidden;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	transition: all .5s ease;
 }
 
-#home {
+#main {
 	position: fixed;
 	height: 100%;
 	width: 100%;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	transition: all .5s ease;
 }
 
 #leftmenu ul {
@@ -28,8 +34,9 @@
 	margin-left: 10px;
 }
 
-.bar-standard {
-	top: 45px;
+.panel {
+	height: 100%;
+	width: 100%;
 }
 
 .hide {

@@ -18,6 +18,7 @@ function($, _, Backbone) {
 			localStorage['identalk_user'] = this.get('email');
 		},
 		sync: function(method, model, options) {
+			var that = this;
 			if (this.methodUrl && this.methodUrl[method.toLowerCase()]) {
 				options = options || {};
 				options.url = this.methodUrl[method.toLowerCase()];
@@ -27,12 +28,17 @@ function($, _, Backbone) {
 				type: 'post',
 				dataType: "json",
 				url: options.url,
-				data: JSON.stringify(this),
+				data: {
+					data: JSON.stringify(this)
+				},
 				success: function(result, status) {
-					// console.log(result)
-					// if(result.status) {
-					// 	return true;
-					// }
+					console.log(result)
+					if(result.is_login) {
+						that.localStorage();
+						window.location.reload();
+					} else {
+						alert('Virify your email or password please.')
+					}
 				}
 			});
 		},

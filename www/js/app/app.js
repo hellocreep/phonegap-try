@@ -2,149 +2,136 @@ define(
 ['zepto', 'underscore', 'backbone', 'user'],
 function($, _, Backbone, User) {
 
-	var _Swipeduration = 500
-
-	var loadings = {
-		show: function() {
+	var app = {
+		_Animateduration: 500,
+		window_width: $(window).width(),
+		menu_pos: $(window).width() + 10,
+		loadings: {
+			show: function() {
 			$('<div class="mask"><div class="loader">Loadings...</div></div>')
-			.appendTo($('body'));
+				.appendTo($('body'));
+			},
+			hide: function() {
+				$('.mask').animate({
+					opacity: 0
+				}, app._Animateduration, 'easing', function() {
+					$(this).remove();
+				});
+			}
 		},
-		hide: function() {
-			$('.mask').animate({
-				opacity: 0
-			}, 800, 'easing', function() {
-				$(this).remove();
+		init: function() {
+			var that = this;
+
+			// show loader
+			that.loadings.show();
+
+			var user = new User();
+
+			if(user.checkSingin()) {
+
+				// reset the menu pos
+				$('.bar-title').show();
+				$('#leftmenu').css({
+					left: -that.menu_pos,
+				})
+				$('#rightmenu').css({
+					right: -that.menu_pos,
+				});
+
+				// Top nav	
+				$('.top-nav').tap(function() {
+					var $this = $(this),
+						dir = $this.data('dir');
+					if(dir === 'left') {
+						that.leftmenu('show');	
+					} else {
+						that.rightmenu('show');
+					}
+				});
+
+				// Left nav
+				$('.left-nav').tap(function() {
+					var $this = $(this);
+					that.home('show');
+					$($this.attr('href')).show().siblings().hide();
+				});
+
+				// home swipe
+				$('#main').swipeLeft(function() {
+					that.home('show');
+				})
+				.swipeRight(function() {
+					that.home('show');
+				});
+
+
+			} else {
+				// signin form tmpl
+				require(['signin'], function(signin) {
+					var s = new signin;
+				});
+			}
+
+			// hide the loader
+			that.loadings.hide();
+		},
+		home: function(show) {
+			var that = this,
+				hash = window.location.hash;
+
+			var offset = that.window_width - 100;
+			if(hash === '#rightmenu') {
+				offset = -offset;
+			}
+			if(show === 'show') {
+				offset = 0;
+				that.leftmenu('hide');
+				that.rightmenu('hide');
+			}
+			$('#main').css({
+				left: offset
 			});
-		}	
+		},
+		leftmenu: function(show) {
+			var that = this;
+			if(show === 'show') {
+				$('#leftmenu').css({
+					left: -100,
+					visibility: 'visible'
+				});
+				that.home('hide');
+				that.rightmenu('hide');
+			} else {
+				$('#leftmenu').css({
+					left: -that.menu_pos,
+				});
+			}
+		},
+		rightmenu: function(show) {
+			var that = this;
+			if(show === 'show') {
+				$('#rightmenu').css({
+					right: -100,
+					visibility: 'visible'
+				});
+				that.home('hide');
+				that.leftmenu('hide');
+			} else {
+				$('#rightmenu').css({
+					right: -that.menu_pos,
+				});
+			}
+		},
+		timeline: {
+			show: function() {
+				require(['timeline_view'], function(Timeline) {
+					var timeline = new Timeline;
+					timeline.render();
+				});
+			}
+		}
 	}
 
-	loadings.show();
+	return app;
 
-	var user = new User();
-
-	if(user.checkSingin()) {
-		user.set({
-			email: 'test',
-			password: 'test',
-			username: 'test',
-			is_login: true
-		});
-		$('.bar-title').show();
-
-
-		// left & right swipe
-		// later change into css3
-		var window_width = $(window).width();
-		var	menu_pos = window_width + 10;
-
-		$('#leftmenu').css({
-			left: '-' + menu_pos + 'px',
-			visibility: 'visible'
-		})
-
-		$('#rightmenu').css({
-			right: '-' + menu_pos + 'px',
-			visibility: 'visible'
-		});
-
-		$('#home').swipeLeft(function() {
-			$('#leftmenu').animate({
-				left: '-'+ menu_pos +'px',
-			}, _Swipeduration);
-			$('#home').animate({
-				left: 0
-			}, _Swipeduration);
-		});
-
-		$('#home').swipeRight(function() {
-			$('#rightmenu').animate({
-				right: '-'+ menu_pos +'px',
-			}, _Swipeduration);
-			$('#home').animate({
-				left: 0
-			}, _Swipeduration);
-		});
-
-		$('#swipeleft').tap(function() {
-			$('#leftmenu').animate({
-				left: -100
-			}, _Swipeduration);
-			$('#home').animate({
-				left: window_width - 100
-			}, _Swipeduration);
-		});
-
-		$('#swiperight').tap(function() {
-			$('#rightmenu').animate({
-				right: -100
-			}, _Swipeduration);
-			$('#home').animate({
-				left: '-' + (window_width - 100) + 'px'
-			}, _Swipeduration);
-		});
-
-		//home
-		$('#home_tab').tap(function() {
-			$('#leftmenu').animate({
-				left: '-'+ menu_pos +'px',
-			}, _Swipeduration);
-			$('#home').animate({
-				left: 0
-			}, _Swipeduration);
-			
-		});
-
-		// profile
-		$('#profile').tap(function() {
-			$('#leftmenu').animate({
-				left: '-'+ menu_pos +'px',
-			}, _Swipeduration);
-			$('#home').animate({
-				left: 0
-			}, _Swipeduration);
-			$('.bar-standard').hide();
-			$('#profile_panel').show().siblings().hide();
-			$('.bar-tab').show();
-		});
-
-		$('.profile-tab').tap(function() {
-			$(this).addClass('active').siblings().removeClass('active')
-			$('#profile_panel').text($(this).text());
-		});
-
-		// densit
-		$('#dentist').tap(function() {
-			$('#leftmenu').animate({
-				left: '-'+ menu_pos +'px',
-			}, _Swipeduration);
-			$('#home').animate({
-				left: 0
-			}, _Swipeduration);
-			$('.bar-standard').show();
-			$('#profile_panel').hide().siblings().hide();
-			$('.bar-tab').hide();
-		});
-
-		//search
-		$('#search').tap(function() {
-			$('#leftmenu').animate({
-				left: '-'+ menu_pos +'px',
-			}, _Swipeduration);
-			$('#home').animate({
-				left: 0
-			}, _Swipeduration);
-			$('.bar-tab').hide();
-			$('.bar-standard').hide();
-			$('#search_panel').show().siblings().hide();
-		});
-
-
-
-		loadings.hide();
-	} else {
-		require(['signin'], function(signin) {
-			var s = new signin;
-			loadings.hide();
-		});
-	}
 });
