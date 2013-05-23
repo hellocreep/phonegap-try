@@ -9,7 +9,7 @@ function($, _, Backbone) {
 		},
 		url: '',
 		methodUrl: {
-			'signin': 'http://192.168.1.102:8000/mobile-login/',
+			'signin': 'http://192.168.1.108:8000/mobile-login/',
 			'signup': '',
 			'test': 'http://baidu.com',
 			'delete': ''

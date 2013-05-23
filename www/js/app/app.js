@@ -64,11 +64,17 @@ function($, _, Backbone, User) {
 					that.home('show');
 				});
 
+				// init timeline
+				require(['timeline_view'], function(Timeline) {
+					var timeline = new Timeline;
+				});
+
+				
 
 			} else {
 				// signin form tmpl
-				require(['signin'], function(signin) {
-					var s = new signin;
+				require(['signin_view'], function(Signin) {
+					var signin = new Signin;
 				});
 			}
 
@@ -124,10 +130,7 @@ function($, _, Backbone, User) {
 		},
 		timeline: {
 			show: function() {
-				require(['timeline_view'], function(Timeline) {
-					var timeline = new Timeline;
-					timeline.render();
-				});
+				$('#timeline_panel').show().siblings().hide();	
 			}
 		}
 	}

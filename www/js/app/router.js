@@ -3,20 +3,13 @@ define(['app'], function(app) {
 		routes: {
 			'': 'home',
 			'home': 'home',
-			'leftmenu': 'leftmenu',
-			'rightmenu': 'rightmenu'
+			// 'leftmenu': 'leftmenu',
+			// 'rightmenu': 'rightmenu'
 		},
 		home: function() {
 			console.log('home')
 			app.home('show');
 			app.timeline.show();
-			// $.ajax({
-			// 	type: 'POST',
-			// 	url: '/ajax/p/stream/getpost/',
-			// 	success: function(result) {
-			// 		console.log(result)
-			// 	}
-			// });
 		},
   		leftmenu: function() {
   			console.log('leftmenu');

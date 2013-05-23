@@ -33,7 +33,7 @@
                 </header>
                
                 <div class="content">
-                    <ul id="timeline_panel" class="hide panel"></ul>
+                    <ul id="timeline_panel" class="hide panel list"></ul>
                     <div id="profile_panel" class="hide panel">
                         <nav class="bar-tab">
                             <ul class="tab-inner">
@@ -146,7 +146,10 @@
                 </form>
             </script>
             <script id="timeline_tmpl" type="text/tmpl">
-                <li><%= content %></li>
+                <li>
+                    <img src="<%- imagephoto %>" width="50">
+                    <%= content %>
+                </li>
             </script>
         </div> 
         <!-- <div>
