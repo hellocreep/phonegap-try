@@ -2,7 +2,7 @@ define(
 ['zepto', 'underscore', 'backbone', 'user'],
 function($, _, Backbone, User) {
 
-	var app = {
+	var App = {
 		_Animateduration: 500,
 		window_width: $(window).width(),
 		menu_pos: $(window).width() + 10,
@@ -14,7 +14,7 @@ function($, _, Backbone, User) {
 			hide: function() {
 				$('.mask').animate({
 					opacity: 0
-				}, app._Animateduration, 'easing', function() {
+				}, App._Animateduration, 'easing', function() {
 					$(this).remove();
 				});
 			}
@@ -29,7 +29,7 @@ function($, _, Backbone, User) {
 
 			if(user.checkSingin()) {
 
-				// reset the menu pos
+				// reset the menu position
 				$('.bar-title').show();
 				$('#leftmenu').css({
 					left: -that.menu_pos,
@@ -69,7 +69,12 @@ function($, _, Backbone, User) {
 					var timeline = new Timeline;
 				});
 
-				
+				// profile tab
+				$('.profile-tab').tap(function() {
+					var $this = $(this);
+					$this.addClass('active').siblings().removeClass('active');
+					$($this.data('target')).show().siblings().hide();
+				});
 
 			} else {
 				// signin form tmpl
@@ -135,6 +140,6 @@ function($, _, Backbone, User) {
 		}
 	}
 
-	return app;
+	return App;
 
 });
