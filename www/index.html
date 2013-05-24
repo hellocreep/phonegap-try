@@ -118,9 +118,7 @@
                 </ul>
             </div>
             <div id="rightmenu">
-                <ul class="list">
-                    <li>Dentist</li>
-                    <li>Dentist</li>
+                <ul id="denlist" class="list">
                 </ul>
             </div>
             
@@ -155,6 +153,11 @@
                     <img src="<%- imagephoto %>" width="50">
                     <%= content %>
                 </li>
+            </script>
+            <script id="info_tmpl" type="text/tmpl">
+                <p><%= myname %></p>
+                <p><%= age %></p>
+                <p><%= title_var %></p>
             </script>
         </div> 
         <!-- <div>

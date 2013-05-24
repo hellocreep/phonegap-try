@@ -32,9 +32,14 @@ requirejs.config({
 		'localstorage': 'vendor/backbone/backbone.localStorage-min',
 		'user': 'app/models/user',
 		'post': 'app/models/post',
+		'profile': 'app/models/profile',
+		'dentist': 'app/models/dentist',
+		'dentists': 'app/collections/dentists',
 		'posts': 'app/collections/posts',
 		'signin_view': 'app/views/sign-in',
 		'timeline_view': 'app/views/timeline',
+		'profile_view': 'app/views/profile',
+		'denlist_view': 'app/views/denlist',
 		'app': 'app/app',
 		'router': 'app/router'
 	},
@@ -56,6 +61,12 @@ requirejs.config({
 			deps: ['zepto', 'underscore', 'backbone']
 		},
 		timeline_view: {
+			deps: ['zepto', 'underscore', 'backbone']
+		},
+		profile_view: {
+			deps: ['zepto', 'underscore', 'backbone']
+		},
+		denlist_view: {
 			deps: ['zepto', 'underscore', 'backbone']
 		}
 	}

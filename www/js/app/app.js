@@ -46,6 +46,9 @@ function($, _, Backbone, User) {
 						that.leftmenu('show');	
 					} else {
 						that.rightmenu('show');
+						require(['denlist_view'], function(Denlist) {
+							var denlist = new Denlist;
+						});
 					}
 				});
 
@@ -54,6 +57,12 @@ function($, _, Backbone, User) {
 					var $this = $(this);
 					that.home('show');
 					$($this.attr('href')).show().siblings().hide();
+					// get profile
+					if(this.id === 'profile') {
+						require(['profile_view'], function(Profile) {
+							var profile = new Profile;
+						});
+					}
 				});
 
 				// home swipe
