@@ -3,7 +3,7 @@ define(['app'], function(app) {
 		routes: {
 			'': 'home',
 			'home': 'home',
-			// 'leftmenu': 'leftmenu',
+			'leftmenu': 'leftmenu',
 			// 'rightmenu': 'rightmenu'
 		},
 		home: function() {

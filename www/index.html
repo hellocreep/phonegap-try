@@ -42,17 +42,17 @@
                         </div>
                         <nav class="bar-tab">
                             <ul class="tab-inner">
-                                <li class="tab-item active profile-tab" data-target="#avatar">
+                                <li class="tab-item active tab" data-target="#avatar">
                                     <a href="javascript:;">
                                         <div class="tab-label">Avatar</div>
                                     </a>
                                 </li>
-                                <li class="tab-item profile-tab" data-target="#info">
+                                <li class="tab-item tab" data-target="#info">
                                     <a href="javascript:;">
                                         <div class="tab-label">Info</div>
                                     </a>
                                 </li>
-                                <li class="tab-item profile-tab" data-target="#ques">
+                                <li class="tab-item tab" data-target="#ques">
                                     <a href="javascript:;">
                                         <div class="tab-label">Ques</div>
                                     </a>
@@ -67,17 +67,16 @@
                     <div id="mydentist_panel" class="hide panel">
                         <nav class="bar-standard">
                             <ul class="segmented-controller">
-                                <li class="active">
-                                    <a href="#">Following</a>
-                                </li>
-                                <li>
-                                    <a href="#">Connecting</a>
-                                </li>
-                                <li>
-                                    <a href="#">Requesting</a>
-                                </li>
+                                <li class="active tab" data-target="#follow_den"><a href="javascript:;">Following</a></li>
+                                <li class="tab" data-target="#con_den"><a href="javascript:;">Connecting</a></li>
+                                <li class="tab" data-target="#req_den"><a href="javascript:;">Requesting</a></li>
                             </ul>
                         </nav>
+                        <div class="switch-panel my-dentist">
+                            <div id="follow_den" class="active">Following</div>
+                            <div id="con_den" class="hide">Connectings</div>
+                            <div id="req_den" class="hide">Requesting</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,14 +111,14 @@
                             Settings
                             <span class="chevron" class="left-nav"></span>
                         </a>
+                        <a href="/accounts/logout/">Signout</a>
                     </li>
                     <li class="list-divider">Notifications</li>
 
                 </ul>
             </div>
             <div id="rightmenu">
-                <ul id="denlist" class="list">
-                </ul>
+                <ul id="denlist" class="list"></ul>
             </div>
             
         </div>

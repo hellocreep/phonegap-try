@@ -20,7 +20,9 @@ function($, _, Backbone, User) {
 				email: this.$el.find('input[name="email"]').val(),
 				password: this.$el.find('input[name="password"]').val()
 			});
-			this.user.sync('signin');
+			this.user.sync('signin', this.user, {callback: function() {
+				window.location.reload();
+			}});
 		}
 	});
 	return Signin;

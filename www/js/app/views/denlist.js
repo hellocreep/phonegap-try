@@ -8,14 +8,14 @@ function($, _, Backbone, Dentists) {
 		initialize: function() {
 			var that = this;
 			this.dentists = new Dentists;
-			this.dentists.fetch();
-			this.dentists.on('sync', function() {
+			this.dentists.sync('getconnected', this.dentists, {callback: function() {
 				that.render();
-			});
+			}});
 		},
 		render: function() {
 			var that = this;
 			this.$el.empty();
+			console.log(this.dentists)
 			this.dentists.forEach(function(model) {
 				that.$el.append(that.template(model.toJSON()));
 			});

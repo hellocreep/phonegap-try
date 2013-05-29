@@ -9,13 +9,16 @@ function($, _, Backbone) {
 		},
 		url: '',
 		methodUrl: {
-			'signin': 'http://192.168.1.106:8000/mobile-login/',
+			'signin': 'http://192.168.1.102:8000/mobile-login/',
 			'signup': '',
-			'test': 'http://baidu.com',
-			'delete': ''
+			'signout': 'http://192.168.1.102:8000/accounts/logout/',
+			'test': 'http://baidu.com'
 		},
 		localStorage: function() {
-			localStorage['identalk_user'] = this.get('email');
+			localStorage['identalk_email'] = this.get('email');
+			// Not safe
+			localStorage['identalk_password'] = this.get('password');
+			localStorage['identalk_status'] = this.get('is_login')
 		},
 		sync: function(method, model, options) {
 			var that = this;
@@ -32,26 +35,33 @@ function($, _, Backbone) {
 					data: JSON.stringify(this)
 				},
 				success: function(result, status) {
-					console.log(result)
-					if(result.is_login) {
-						that.localStorage();
-						window.location.reload();
-					} else {
-						alert('Virify your email or password please.')
+					that.localStorage();
+					model.set(result);
+					if(options.callback) {
+						options.callback(result);
 					}
+					console.log(result)
+					// if(result.is_login) {
+					// 	that.localStorage();
+					// 	window.location.reload();
+					// } else {
+					// 	console.log('Virify your email or password please.');
+					// }
 				}
 			});
 		},
 		initialize: function() {
-			
-		},
-		checkSingin: function() {
-			var user = localStorage['identalk_user'];
-			if(user) {
-				return true;
-			} else {
-				return false;
-			}
+			var that = this;
+			this.on('change:is_login', function(model, is_login){
+				console.log(is_login)
+				that.set({is_login: is_login});
+			});
+			this.set({
+				email: localStorage['identalk_email'],
+				password: localStorage['identalk_password']
+			});
+			this.sync('signin', this);
+			return this;
 		}
 	});
 

@@ -26,74 +26,93 @@ function($, _, Backbone, User) {
 			that.loadings.show();
 
 			var user = new User();
+			
+			// Check signin twice 
+			user.sync('signin', user, {callback: function() {
+				console.log(user)
 
-			if(user.checkSingin()) {
+				if(user.get('is_login')) {
 
-				// reset the menu position
-				$('.bar-title').show();
-				$('#leftmenu').css({
-					left: -that.menu_pos,
-				})
-				$('#rightmenu').css({
-					right: -that.menu_pos,
-				});
+					// reset the menu position
+					$('.bar-title').show();
+					$('#leftmenu').css({
+						left: -that.menu_pos,
+					})
+					$('#rightmenu').css({
+						right: -that.menu_pos,
+					});
 
-				// Top nav	
-				$('.top-nav').tap(function() {
-					var $this = $(this),
-						dir = $this.data('dir');
-					if(dir === 'left') {
-						that.leftmenu('show');	
-					} else {
-						that.rightmenu('show');
-						require(['denlist_view'], function(Denlist) {
-							var denlist = new Denlist;
-						});
-					}
-				});
+					// Top nav	
+					$('.top-nav').tap(function() {
+						var $this = $(this),
+							dir = $this.data('dir');
+						if(dir === 'left') {
+							that.leftmenu('show');	
+						} else {
+							that.rightmenu('show');
+						}
+					});
 
-				// Left nav
-				$('.left-nav').tap(function() {
-					var $this = $(this);
-					that.home('show');
-					$($this.attr('href')).show().siblings().hide();
-					// get profile
-					if(this.id === 'profile') {
-						require(['profile_view'], function(Profile) {
-							var profile = new Profile;
-						});
-					}
-				});
+					// Left nav
+					$('.left-nav').tap(function() {
+						var $this = $(this);
+						that.home('show');
+						$($this.attr('href')).show().siblings().hide();
+						// get profile
+						if(this.id === 'profile') {
+							require(['profile_view'], function(Profile) {
+								var profile = new Profile;
+							});
+						}
+						if(this.id === 'dentist') {
+							require(['mydentist_view'], function(Dentist) {
+								var dentist = new Dentist;
+							});
+						}
+					});
 
-				// home swipe
-				$('#main').swipeLeft(function() {
-					that.home('show');
-				})
-				.swipeRight(function() {
-					that.home('show');
-				});
+					// home swipe
+					$('#main').swipeLeft(function() {
+						that.home('show');
+					})
+					.swipeRight(function() {
+						that.home('show');
+					});
 
-				// init timeline
-				require(['timeline_view'], function(Timeline) {
-					var timeline = new Timeline;
-				});
+					// init timeline
+					require(['timeline_view'], function(Timeline) {
+						var timeline = new Timeline;
+					});
 
-				// profile tab
-				$('.profile-tab').tap(function() {
-					var $this = $(this);
-					$this.addClass('active').siblings().removeClass('active');
-					$($this.data('target')).show().siblings().hide();
-				});
+					// init dentist list
+					require(['denlist_view'], function(Denlist) {
+						var denlist = new Denlist;
+					});
 
-			} else {
-				// signin form tmpl
-				require(['signin_view'], function(Signin) {
-					var signin = new Signin;
-				});
-			}
+					// profile tab
+					$('.tab').tap(function() {
+						var $this = $(this);
+						$this.addClass('active').siblings().removeClass('active');
+						$($this.data('target')).show().siblings().hide();
+					});
 
-			// hide the loader
-			that.loadings.hide();
+					// // mydentist tab
+					// $('.dentist-tab').tap(function() {
+					// 	var $this = $(this);
+
+					// });
+
+				} else {
+					// signin form tmpl
+					require(['signin_view'], function(Signin) {
+						var signin = new Signin;
+					});
+				}
+
+				// hide the loader
+				that.loadings.hide();
+			}});	
+			
 		},
 		home: function(show) {
 			var that = this,

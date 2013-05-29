@@ -40,6 +40,7 @@ requirejs.config({
 		'timeline_view': 'app/views/timeline',
 		'profile_view': 'app/views/profile',
 		'denlist_view': 'app/views/denlist',
+		'mydentist_view': 'app/views/my-dentist',
 		'app': 'app/app',
 		'router': 'app/router'
 	},
@@ -68,6 +69,9 @@ requirejs.config({
 		},
 		denlist_view: {
 			deps: ['zepto', 'underscore', 'backbone']
+		},
+		mydentist_view: {
+			deps: ['zepto', 'underscore', 'backbone']
 		}
 	}
 });
@@ -78,6 +82,9 @@ function($, app, Router) {
 	app.init();
 
 	var router = new Router();
+	// $('a').click(function(e) {
+	// 	e.preventDefault();
+	// })
 
 	Backbone.history.start();
 
