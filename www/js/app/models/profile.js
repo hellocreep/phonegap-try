@@ -5,9 +5,9 @@ function($, _, Backbone) {
 		defaults: {
 
 		},
-		url: 'http://192.168.1.101:8000/ajax/p/profile/',
+		url: 'http://192.168.1.103:8000/ajax/p/profile/',
 		methodUrl: {
-			'get': 'http://192.168.1.101:8000/ajax/p/profile/',
+			'get': 'http://192.168.1.103:8000/ajax/p/profile/',
 			'test': 'http://baidu.com',
 			'delete': ''
 		},

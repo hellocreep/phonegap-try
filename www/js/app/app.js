@@ -27,7 +27,7 @@ function($, _, Backbone, User) {
 
 			var user = new User();
 			
-			// Check signin twice 
+			// Check signin fucking twice 
 			user.sync('signin', user, {callback: function() {
 				console.log(user)
 

@@ -9,9 +9,9 @@ function($, _, Backbone) {
 		},
 		url: '',
 		methodUrl: {
-			'signin': 'http://192.168.1.102:8000/mobile-login/',
+			'signin': 'http://192.168.1.103:8000/mobile-login/',
 			'signup': '',
-			'signout': 'http://192.168.1.102:8000/accounts/logout/',
+			'signout': 'http://192.168.1.103:8000/accounts/logout/',
 			'test': 'http://baidu.com'
 		},
 		localStorage: function() {
